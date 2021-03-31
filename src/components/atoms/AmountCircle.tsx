@@ -2,19 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   color: white;
   display: flex;
-  place-items: center center;
+  justify-content: center;
+  align-items: center;
   background: purple;
-  padding: 8px;
+  font-size: 14px;
   font-weight: 100;
+  text-align: center;
 `;
 
 const AmountCircle = ({ amount }: { amount: number }) => {
-  return <Container>{'$' + amount}</Container>;
+  return <Container className='amount-circle'>{'$' + amount}</Container>;
 };
 
 export default AmountCircle;

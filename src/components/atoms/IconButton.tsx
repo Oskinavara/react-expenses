@@ -1,7 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const Container = styled.button``;
 
 interface Props {
   handler: () => void;
@@ -9,7 +6,11 @@ interface Props {
 }
 
 const IconButton = ({ handler, children }: Props) => {
-  return <Container>{children}</Container>;
+  return (
+    <button className='icon-button' onClick={handler}>
+      {children}
+    </button>
+  );
 };
 
 export default IconButton;
