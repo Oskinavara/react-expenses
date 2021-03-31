@@ -9,7 +9,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: purple;
+  background: ${({ theme }) => theme.primaryColor};
   font-size: 14px;
   font-weight: 100;
   text-align: center;

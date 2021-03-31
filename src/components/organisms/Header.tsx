@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AddIcon from '@material-ui/icons/Add';
 
 const Container = styled.div`
-  background: purple;
+  background: ${({ theme }) => theme.primaryColor};
   padding: 12px 8px;
   display: flex;
   justify-content: space-between;
