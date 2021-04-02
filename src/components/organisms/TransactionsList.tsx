@@ -1,32 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import SingleTransaction from '../molecules/SingleTransaction';
+import Transaction from '../../interfaces/Transaction';
 
-interface Transaction {
-  title: string;
-  date: Date;
-  amount: number;
-  id: number;
-}
-
-const Container = styled.ul`
-  padding: 8px;
+const StyledList = styled.ul`
+  padding: 8px 8px 68px;
 `;
 
-const transactions: Transaction[] = [
-  { title: 'Title 1', date: new Date(), amount: 11, id: 1 },
-  { title: 'Title 2', date: new Date(), amount: 2232, id: 2 },
-  { title: 'Title 3', date: new Date(), amount: 33, id: 3 },
-  { title: 'Title 4', date: new Date(), amount: 44, id: 4 },
-];
+interface Props {
+  transactions: Transaction[];
+}
 
-const TransactionsList = () => {
+const TransactionsList: React.FC<Props> = ({ transactions }: Props) => {
   return (
-    <Container>
+    <StyledList>
       {transactions.map((tx) => (
-        <SingleTransaction key={tx.id} title={tx.title} date={tx.date.toDateString()} amount={tx.amount} />
+        <SingleTransaction
+          key={tx.id}
+          title={tx.title}
+          date={tx.date.toDateString()}
+          price={tx.price}
+          id={tx.id}
+        />
       ))}
-    </Container>
+    </StyledList>
   );
 };
 

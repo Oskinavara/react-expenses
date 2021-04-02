@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import AddIcon from '@material-ui/icons/Add';
+import IconButton from '../atoms/IconButton';
+import { MainContext } from '../../contexts/MainContext';
 
-const Container = styled.div`
+const StyledHeader = styled.div`
   background: ${({ theme }) => theme.primaryColor};
   padding: 12px 8px;
   display: flex;
@@ -15,11 +17,14 @@ const Title = styled.p`
 `;
 
 const Header = () => {
+  const { toggleModalSheet } = useContext(MainContext);
   return (
-    <Container>
+    <StyledHeader>
       <Title>Personal Expenses</Title>
-      <AddIcon htmlColor='white'></AddIcon>
-    </Container>
+      <IconButton handler={toggleModalSheet}>
+        <AddIcon htmlColor='white'></AddIcon>
+      </IconButton>
+    </StyledHeader>
   );
 };
 

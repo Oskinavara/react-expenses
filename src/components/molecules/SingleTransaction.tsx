@@ -1,11 +1,12 @@
 import RemoveIcon from '@material-ui/icons/DeleteOutlined';
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import AmountCircle from '../atoms/AmountCircle';
+import PriceCircle from '../atoms/PriceCircle';
 import IconButton from '../atoms/IconButton';
+import { MainContext } from '../../contexts/MainContext';
 
-const Container = styled.li`
+const StyledTransaction = styled.li`
   display: flex;
   align-items: center;
   padding: 12px 8px;
@@ -24,12 +25,21 @@ const Container = styled.li`
   .amount-circle {
     margin-right: 16px;
   }
+
+  h4 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 12px;
+    color: gray;
+  }
 `;
 
-const Title = styled.h4`
-  font-size: 18px;
-  margin-bottom: 8px;
-  font-weight: 600;
+const StyledCircle = styled(PriceCircle)`
+  margin-right: 24px;
 `;
 
 const Date = styled.p`
@@ -40,25 +50,24 @@ const Date = styled.p`
 interface Props {
   title: string;
   date: string;
-  amount: number;
+  price: number;
+  id: string;
 }
 
-const removeTransaction = () => {
-  console.log('removed');
-};
+const SingleTransaction = ({ title, date, price, id }: Props) => {
+  const { removeTransaction } = useContext(MainContext);
 
-const SingleTransaction = ({ title, date, amount }: Props) => {
   return (
-    <Container>
-      <AmountCircle amount={amount} />
+    <StyledTransaction>
+      <StyledCircle price={price} className='' />
       <div>
-        <Title>{title}</Title>
-        <Date>{date}</Date>
+        <h4>{title}</h4>
+        <p>{date}</p>
       </div>
-      <IconButton handler={removeTransaction}>
+      <IconButton handler={() => removeTransaction(id)}>
         <RemoveIcon htmlColor='#f44336' />
       </IconButton>
-    </Container>
+    </StyledTransaction>
   );
 };
 

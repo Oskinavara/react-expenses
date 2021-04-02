@@ -1,8 +1,17 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    background: white
+  *, *::after, *::before {
+    box-sizing: border-box;
+  }
+
+  input,button {
+    background: transparent;
+    border: 0;
+
+    &:focus {
+      outline: 0;
+    }
   }
 `;
 
