@@ -2,8 +2,8 @@ import RemoveIcon from '@material-ui/icons/DeleteOutlined';
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import PriceCircle from '../atoms/PriceCircle';
-import IconButton from '../atoms/IconButton';
+import PriceCircle from '@/components/atoms/PriceCircle';
+import IconButton from '@/components/atoms/IconButton';
 import { MainContext } from '../../contexts/MainContext';
 
 const StyledTransaction = styled.li`

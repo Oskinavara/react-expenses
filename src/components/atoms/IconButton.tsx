@@ -5,7 +5,7 @@ interface Props {
   children: any;
 }
 
-const IconButton = ({ handler, children }: Props) => {
+const IconButton: React.FC<Props> = ({ handler, children }: Props) => {
   return (
     <button className='icon-button' onClick={handler}>
       {children}
