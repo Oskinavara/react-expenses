@@ -9,6 +9,7 @@ import Transaction from './interfaces/Transaction';
 import ModalBottomSheet from './components/organisms/ModalBottomSheet';
 import styled from 'styled-components';
 import { MainContext } from './contexts/MainContext';
+import axios from 'axios';
 
 const transactionList: Transaction[] = [
   { title: 'Title 1', date: new Date(), price: 11111, id: '' },
