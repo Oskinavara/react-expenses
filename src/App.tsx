@@ -60,12 +60,38 @@ const App = () => {
     [removeTransaction, addTransaction, updateField, userInput, toggleModalSheet]
   );
 
+  const post = async () => {
+    console.log('post start');
+    try {
+      const result = await axios.post('http://192.168.0.227:3001/test', {
+        title: 'test title',
+        description:
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi doloremque omnis illo modi, commodi molestias officiis a. Harum, animi? Illum expedita sit ipsum natus aperiam molestias nihil quaerat doloremque a.',
+      });
+      console.log(result.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const get = async () => {
+    console.log('post start');
+    try {
+      const result = await axios.get('http://192.168.0.227:3001/test');
+      console.log(result.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <MainContext.Provider value={providerValue}>
         <StyledApp>
           <GlobalStyle />
           <Header />
+          <button onClick={post}>POST</button>
+          <button onClick={get}>GET</button>
           <TransactionsList transactions={transactions} />
           <FloatingActionButton handleClick={toggleModalSheet} />
           {isBottomSheetOpened && <ModalBottomSheet />}
