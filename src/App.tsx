@@ -7,6 +7,7 @@ import theme from './styles/Theme';
 import GlobalStyle from './styles/GlobalStyle';
 import Transaction from './interfaces/Transaction';
 import ModalBottomSheet from './components/organisms/ModalBottomSheet';
+import Chart from './components/organisms/Chart';
 import styled from 'styled-components';
 import { MainContext } from './contexts/MainContext';
 import axios from 'axios';
@@ -27,9 +28,7 @@ const App = () => {
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
   const [userInput, setUserInput] = useState({ title: '', price: 0 });
 
-  const addTransaction: (transaction: Transaction) => void = (
-    transaction: Transaction
-  ) => {
+  const addTransaction: (transaction: Transaction) => void = (transaction: Transaction) => {
     setTransactions([...transactions, transaction]);
     setUserInput({ title: '', price: 0 });
     toggleModalSheet();
@@ -43,10 +42,7 @@ const App = () => {
     setIsBottomSheetOpened(!isBottomSheetOpened);
   };
 
-  const updateField: (e: React.ChangeEvent<HTMLInputElement>, key: string) => void = (
-    e,
-    key
-  ) => {
+  const updateField: (e: React.ChangeEvent<HTMLInputElement>, key: string) => void = (e, key) => {
     setUserInput({ ...userInput, [key]: e.target.value });
   };
 
@@ -91,8 +87,7 @@ const App = () => {
         <StyledApp>
           <GlobalStyle />
           <Header />
-          <button onClick={post}>POST</button>
-          <button onClick={get}>GET</button>
+          <Chart />
           <TransactionsList transactions={transactions} />
           <FloatingActionButton handleClick={toggleModalSheet} />
           {isBottomSheetOpened && <ModalBottomSheet />}
