@@ -10,7 +10,6 @@ import ModalBottomSheet from './components/organisms/ModalBottomSheet';
 import Chart from './components/organisms/Chart';
 import styled from 'styled-components';
 import { MainContext } from './contexts/MainContext';
-import axios from 'axios';
 
 const transactionList: Transaction[] = [
   { title: 'Title 1', date: new Date(), price: 11111, id: '' },
@@ -53,33 +52,17 @@ const App = () => {
       updateField,
       userInput,
       toggleModalSheet,
+      isBottomSheetOpened,
     }),
-    [removeTransaction, addTransaction, updateField, userInput, toggleModalSheet]
+    [
+      removeTransaction,
+      addTransaction,
+      updateField,
+      userInput,
+      toggleModalSheet,
+      isBottomSheetOpened,
+    ]
   );
-
-  const post = async () => {
-    console.log('post start');
-    try {
-      const result = await axios.post('http://192.168.0.227:3001/test', {
-        title: 'test title',
-        description:
-          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi doloremque omnis illo modi, commodi molestias officiis a. Harum, animi? Illum expedita sit ipsum natus aperiam molestias nihil quaerat doloremque a.',
-      });
-      console.log(result.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const get = async () => {
-    console.log('post start');
-    try {
-      const result = await axios.get('http://192.168.0.227:3001/test');
-      console.log(result.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   return (
     <ThemeProvider theme={theme}>

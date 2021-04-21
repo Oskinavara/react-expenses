@@ -17,7 +17,7 @@ const StyledCircle = styled.div<Props>`
   background: ${({ theme }) => theme.primaryColor};
   font-size: ${({ price }) => {
     const length: number = price.toString().length;
-    return Math.min(14, 18 - length);
+    return Math.min(16, 18 - length);
   }}px; // Epic hack for decreasing font-size for longer numbers
   text-align: center;
 `;

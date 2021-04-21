@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import AddIcon from '@material-ui/icons/Add';
+import CloseIcon from '@material-ui/icons/Close';
+import { MainContext } from '@/contexts/MainContext';
 
 interface Props {
   handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -23,9 +25,13 @@ const StyledButton = styled.button`
 `;
 
 const FloatingActionButton: React.FC<Props> = ({ handleClick }: Props) => {
+  const { isBottomSheetOpened } = useContext(MainContext);
+
   return (
     <StyledButton onClick={handleClick}>
-      <AddIcon htmlColor={'white'}></AddIcon>
+      {isBottomSheetOpened 
+        ? <CloseIcon htmlColor={'white'}></CloseIcon> 
+        : <AddIcon htmlColor={'white'}></AddIcon>}
     </StyledButton>
   );
 };

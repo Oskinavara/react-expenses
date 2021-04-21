@@ -7,4 +7,5 @@ export const MainContext = createContext({
   updateField: (e: React.ChangeEvent<HTMLInputElement>, key: string) => {},
   userInput: { title: '', price: 0 },
   toggleModalSheet: () => {},
+  isBottomSheetOpened: true,
 });
