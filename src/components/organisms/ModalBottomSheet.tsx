@@ -29,7 +29,7 @@ const StyledBottomSheet = styled.div<{ opened: boolean }>`
 `;
 
 const ModalBottomSheet: React.FC = () => {
-  const { updateField, addTransaction, userInput } = useContext(MainContext);
+  const { updatePrice, updateTitle, addTransaction, userInput } = useContext(MainContext);
   const [opened, setOpened] = useState(false);
   useEffect(() => {
     setOpened(true);
@@ -40,9 +40,9 @@ const ModalBottomSheet: React.FC = () => {
         label='Title'
         autoFocus
         type='text'
-        handleChange={(e: React.ChangeEvent<HTMLInputElement>) => updateField(e, 'title')}
+        handleChange={(e: React.ChangeEvent<HTMLInputElement>) => updateTitle(e)}
       />
-      <Input label='Price' type='number' handleChange={(e) => updateField(e, 'price')} />
+      <Input label='Price' type='number' handleChange={(e) => updatePrice(e)} />
       <TextButton
         text='Add transaction'
         handleClick={() =>

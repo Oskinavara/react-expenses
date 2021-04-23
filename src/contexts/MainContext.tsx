@@ -1,11 +1,25 @@
 import { createContext } from 'react';
 import Transaction from '../interfaces/Transaction';
 
-export const MainContext = createContext({
-  removeTransaction: (id: string) => {},
-  addTransaction: (transaction: Transaction) => {},
-  updateField: (e: React.ChangeEvent<HTMLInputElement>, key: string) => {},
-  userInput: { title: '', price: 0 },
+interface Context {
+  removeTransaction: (id: string) => void;
+  addTransaction: (transaction: Transaction) => void;
+  updatePrice: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  updateTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  userInput: { title: string; price: number };
+  toggleModalSheet: () => void;
+  isBottomSheetOpened: boolean;
+  transactions: Transaction[];
+}
+const initialContext = {
+  removeTransaction: () => {},
+  addTransaction: () => {},
+  updatePrice: () => {},
+  updateTitle: () => {},
+  userInput: {title: '', price: 0},
   toggleModalSheet: () => {},
-  isBottomSheetOpened: true,
-});
+  isBottomSheetOpened: false,
+  transactions: []
+};
+
+export const MainContext = createContext<Context>(initialContext);

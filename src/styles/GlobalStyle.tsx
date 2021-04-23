@@ -5,6 +5,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  body {
+    font-family: Roboto;
+  }
+
   input,button {
     background: transparent;
     border: 0;
