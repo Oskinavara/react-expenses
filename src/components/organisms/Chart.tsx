@@ -8,13 +8,13 @@ const StyledChart = styled.div`
   justify-content: space-around;
 `;
 
-const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const Chart = () => {
   return (
     <StyledChart>
       {weekDays.map((day, index) => (
-        <DayIndicator day={{name: day, index: index}} key={day} />
+        <DayIndicator day={{ name: day, index }} key={day} />
       ))}
     </StyledChart>
   );

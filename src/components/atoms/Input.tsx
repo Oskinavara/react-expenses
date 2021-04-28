@@ -1,14 +1,15 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
   label: string;
   autoFocus?: boolean;
+  value: string;
   type: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const StyledInput = styled.div`
+const StyledInput = styled.div<{ type: string }>`
   position: relative;
 
   label {
@@ -23,15 +24,33 @@ const StyledInput = styled.div`
 
   input {
     display: block;
+    position: relative;
     height: 40px;
-    width: 100%;
-    margin-bottom: 28px;
+    width: ${({ type }) => (type === 'date' ? '160px' : '100%')};
     padding: 4px 8px;
     letter-spacing: 0.4px;
     border: 0;
     font-size: 14px;
     border-bottom: 2px solid ${({ theme }) => theme.secondaryColor};
     transition: border-color 0.2s;
+    margin-bottom: 28px;
+
+    &[type='date'] {
+      margin-bottom: 0;
+
+      &::-webkit-calendar-picker-indicator {
+        background: transparent;
+        bottom: 0;
+        color: transparent;
+        cursor: pointer;
+        height: auto;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+      }
+    }
 
     &:focus {
       border-color: ${({ theme }) => theme.primaryColor};
@@ -44,10 +63,16 @@ const StyledInput = styled.div`
   }
 `;
 
-const Input: React.FC<Props> = ({ label, autoFocus, type, handleChange }: Props) => {
+const Input: React.FC<Props> = ({
+  label,
+  autoFocus,
+  type,
+  changeHandler,
+  value,
+}: Props) => {
   return (
-    <StyledInput className='input'>
-      <input onChange={handleChange} type={type} autoFocus={autoFocus} />
+    <StyledInput type={type} className='input'>
+      <input onChange={changeHandler} type={type} value={value} autoFocus={autoFocus} />
       <label htmlFor='input'>{label}</label>
     </StyledInput>
   );

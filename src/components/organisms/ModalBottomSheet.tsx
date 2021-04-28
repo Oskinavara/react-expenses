@@ -3,16 +3,19 @@ import styled from 'styled-components';
 import Input from '../atoms/Input';
 import TextButton from '../atoms/TextButton';
 import { MainContext } from '../../contexts/MainContext';
+import 'react-day-picker/lib/style.css';
 
 const StyledBottomSheet = styled.div<{ opened: boolean }>`
+  max-width: 600px;
+
   position: fixed;
   background: white;
   box-shadow: 0px 2px 5px 0px #333;
-  left: 0;
-  padding: 32px 16px 16px;
+  left: 50%;
+  padding: 32px 16px 48px;
   bottom: -120px;
-  height: 250px;
-  transform: translateY(${({ opened }) => (opened ? '-120px' : '0px')});
+  height: 280px;
+  transform: translate(-50%, ${({ opened }) => (opened ? '-120px' : '0px')});
   opacity: ${({ opened }) => (opened ? 1 : 0)};
   transition: transform 0.2s, opacity 0.2s;
   width: 100%;
@@ -22,37 +25,79 @@ const StyledBottomSheet = styled.div<{ opened: boolean }>`
   }
 
   .text-button {
-    margin-left: auto;
     display: block;
-    margin-bottom: 32px;
+  }
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .text-button {
+      white-space: nowrap;
+    }
   }
 `;
 
 const ModalBottomSheet: React.FC = () => {
-  const { updatePrice, updateTitle, addTransaction, userInput } = useContext(MainContext);
+  const {
+    updateField,
+    addTransaction,
+    userInput,
+    editTransaction,
+    editId,
+    setEditId,
+    toggleModalSheet,
+  } = useContext(MainContext);
   const [opened, setOpened] = useState(false);
+
   useEffect(() => {
     setOpened(true);
+    return () => {
+      setEditId('');
+    };
   }, []);
+
+  const dateValue = () => {
+    const date = new Date(userInput.date);
+    date.setDate(date.getDate() + 1);
+    return new Date(date).toISOString().split('T')[0];
+  };
+
+  const handleClick = () => {
+    if (editId.length) {
+      editTransaction(editId);
+    } else addTransaction(userInput);
+    toggleModalSheet();
+  };
+
   return (
     <StyledBottomSheet opened={opened}>
       <Input
         label='Title'
         autoFocus
+        value={userInput.title}
         type='text'
-        handleChange={(e: React.ChangeEvent<HTMLInputElement>) => updateTitle(e)}
-      />
-      <Input label='Price' type='number' handleChange={(e) => updatePrice(e)} />
-      <TextButton
-        text='Add transaction'
-        handleClick={() =>
-          addTransaction({
-            ...userInput,
-            date: new Date(),
-            id: String(Math.floor(Math.random() * 10000000)),
-          })
+        changeHandler={(e: React.ChangeEvent<HTMLInputElement>) =>
+          updateField('title', e)
         }
       />
+      <Input
+        label='Price'
+        type='number'
+        value={'' + userInput.price}
+        changeHandler={(e) => updateField('price', e)}
+      />
+      <div className='wrapper'>
+        <Input
+          type='date'
+          value={dateValue()}
+          label='Date'
+          changeHandler={(e) => updateField('date', e)}></Input>
+        <TextButton
+          text={editId.length ? 'Edit transaction' : 'Add transaction'}
+          clickHandler={handleClick}
+        />
+      </div>
     </StyledBottomSheet>
   );
 };

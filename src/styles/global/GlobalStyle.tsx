@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: Roboto;
+    background: #777;
   }
 
   input,button {

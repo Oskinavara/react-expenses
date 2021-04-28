@@ -8,12 +8,12 @@ const StyledButton = styled.button`
   font-family: Roboto;
 `;
 
-const TextButton: React.FC<{ text: string; handleClick: () => void }> = ({
+const TextButton: React.FC<{ text: string; clickHandler: () => void }> = ({
   text,
-  handleClick,
+  clickHandler,
 }) => {
   return (
-    <StyledButton className='text-button' onClick={handleClick}>
+    <StyledButton className='text-button' onClick={clickHandler}>
       {text}
     </StyledButton>
   );

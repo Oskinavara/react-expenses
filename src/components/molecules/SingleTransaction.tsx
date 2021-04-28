@@ -1,4 +1,5 @@
 import RemoveIcon from '@material-ui/icons/DeleteOutlined';
+import EditIcon from '@material-ui/icons/Edit';
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
@@ -18,10 +19,6 @@ const StyledTransaction = styled.li`
     margin-bottom: 0;
   }
 
-  .icon-button {
-    margin-left: auto;
-  }
-
   .amount-circle {
     margin-right: 16px;
   }
@@ -36,6 +33,11 @@ const StyledTransaction = styled.li`
     font-size: 12px;
     color: gray;
   }
+
+  .wrapper {
+    margin-left: auto;
+    display: flex;
+  }
 `;
 
 const StyledCircle = styled(PriceCircle)`
@@ -49,13 +51,18 @@ const Date = styled.p`
 
 interface Props {
   title: string;
-  date: string;
+  date: Date;
   price: number;
   id: string;
 }
 
 const SingleTransaction = ({ title, date, price, id }: Props) => {
-  const { removeTransaction } = useContext(MainContext);
+  const { removeTransaction, toggleModalSheet, setEditId } = useContext(MainContext);
+
+  const editSingleTransaction = () => {
+    setEditId(id);
+    toggleModalSheet({ title, date, price });
+  };
 
   return (
     <StyledTransaction>
@@ -64,9 +71,14 @@ const SingleTransaction = ({ title, date, price, id }: Props) => {
         <h4>{title}</h4>
         <p>{date}</p>
       </div>
-      <IconButton handler={() => removeTransaction(id)}>
-        <RemoveIcon htmlColor='#f44336' />
-      </IconButton>
+      <div className='wrapper'>
+        <IconButton clickHandler={editSingleTransaction}>
+          <EditIcon htmlColor='#166088' />
+        </IconButton>
+        <IconButton clickHandler={() => id && removeTransaction(id)}>
+          <RemoveIcon htmlColor='#f44336' />
+        </IconButton>
+      </div>
     </StyledTransaction>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import ProgressBar from '@/components/atoms/ProgressBar';
 import { MainContext } from '@/contexts/MainContext';
@@ -25,7 +25,7 @@ const DayIndicator: React.FC<Props> = ({ day }: Props) => {
   const { transactions } = useContext(MainContext);
 
   const todayAmount: number = +transactions
-    .filter((tx) => tx.date.getDay() === day.index)
+    .filter((tx) => new Date(tx.date).getDay() === day.index)
     .reduce((acc, tx) => acc + +tx.price, 0);
 
   const total: number = +transactions.reduce((acc, tx) => acc + tx.price, 0);

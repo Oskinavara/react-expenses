@@ -5,7 +5,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { MainContext } from '@/contexts/MainContext';
 
 interface Props {
-  handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  clickHandler: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const StyledButton = styled.button`
@@ -24,14 +24,16 @@ const StyledButton = styled.button`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 `;
 
-const FloatingActionButton: React.FC<Props> = ({ handleClick }: Props) => {
+const FloatingActionButton: React.FC<Props> = ({ clickHandler }: Props) => {
   const { isBottomSheetOpened } = useContext(MainContext);
 
   return (
-    <StyledButton onClick={handleClick}>
-      {isBottomSheetOpened 
-        ? <CloseIcon htmlColor={'white'}></CloseIcon> 
-        : <AddIcon htmlColor={'white'}></AddIcon>}
+    <StyledButton onClick={clickHandler}>
+      {isBottomSheetOpened ? (
+        <CloseIcon htmlColor={'white'}></CloseIcon>
+      ) : (
+        <AddIcon htmlColor={'white'}></AddIcon>
+      )}
     </StyledButton>
   );
 };

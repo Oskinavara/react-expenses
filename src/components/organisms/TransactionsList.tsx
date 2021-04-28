@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import SingleTransaction from '../molecules/SingleTransaction';
-import Transaction from '../../interfaces/Transaction';
+import TransactionWithId from '../../interfaces/TransactionWithId';
 
 const StyledList = styled.ul`
-  padding: 8px 8px 68px;
+  padding: 8px 8px 120px;
+  max-height: 80vh;
 `;
 
 interface Props {
-  transactions: Transaction[];
+  transactions: TransactionWithId[];
 }
 
 const TransactionsList: React.FC<Props> = ({ transactions }: Props) => {
@@ -16,11 +17,11 @@ const TransactionsList: React.FC<Props> = ({ transactions }: Props) => {
     <StyledList>
       {transactions.map((tx) => (
         <SingleTransaction
-          key={tx.id}
+          key={tx._id}
           title={tx.title}
-          date={tx.date.toDateString()}
+          date={new Date(tx.date).toDateString()}
           price={tx.price}
-          id={tx.id}
+          id={tx._id}
         />
       ))}
     </StyledList>

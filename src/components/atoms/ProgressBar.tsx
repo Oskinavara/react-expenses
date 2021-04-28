@@ -26,12 +26,8 @@ const StyledBar = styled.div<Props>`
   }
 `;
 
-const boundedPercentage: (percentage: number) => number = (percentage) => {
-  return percentage > 100 ? 100 : percentage < 0 ? 0 : percentage;
-};
-
 const ProgressBar: React.FC<Props> = ({ percentage }: Props) => {
-  return <StyledBar percentage={boundedPercentage(percentage)}></StyledBar>;
+  return <StyledBar percentage={percentage}></StyledBar>;
 };
 
 export default ProgressBar;
