@@ -69,7 +69,7 @@ const SingleTransaction = ({ title, date, price, id }: Props) => {
       <StyledCircle price={price} className='' />
       <div>
         <h4>{title}</h4>
-        <p>{date}</p>
+        <p>{date.toDateString()}</p>
       </div>
       <div className='wrapper'>
         <IconButton clickHandler={editSingleTransaction}>

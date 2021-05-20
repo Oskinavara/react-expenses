@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <Title>Personal Expenses</Title>
-      <IconButton handler={toggleModalSheet}>
+      <IconButton clickHandler={toggleModalSheet}>
         <AddIcon htmlColor='white'></AddIcon>
       </IconButton>
     </StyledHeader>

@@ -77,9 +77,7 @@ const ModalBottomSheet: React.FC = () => {
         autoFocus
         value={userInput.title}
         type='text'
-        changeHandler={(e: React.ChangeEvent<HTMLInputElement>) =>
-          updateField('title', e)
-        }
+        changeHandler={(e) => updateField('title', e)}
       />
       <Input
         label='Price'

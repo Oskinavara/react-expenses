@@ -19,7 +19,7 @@ const TransactionsList: React.FC<Props> = ({ transactions }: Props) => {
         <SingleTransaction
           key={tx._id}
           title={tx.title}
-          date={new Date(tx.date).toDateString()}
+          date={new Date(tx.date)}
           price={tx.price}
           id={tx._id}
         />

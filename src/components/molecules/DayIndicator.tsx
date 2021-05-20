@@ -24,9 +24,9 @@ interface Props {
 const DayIndicator: React.FC<Props> = ({ day }: Props) => {
   const { transactions } = useContext(MainContext);
 
-  const todayAmount: number = +transactions
+  const todayAmount: number = transactions
     .filter((tx) => new Date(tx.date).getDay() === day.index)
-    .reduce((acc, tx) => acc + +tx.price, 0);
+    .reduce((acc, tx) => acc + tx.price, 0);
 
   const total: number = +transactions.reduce((acc, tx) => acc + tx.price, 0);
 

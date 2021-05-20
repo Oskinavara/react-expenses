@@ -10,7 +10,7 @@ const StyledChart = styled.div`
 
 const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-const Chart = () => {
+const Chart: React.FC = () => {
   return (
     <StyledChart>
       {weekDays.map((day, index) => (
